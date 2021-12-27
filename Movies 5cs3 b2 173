@@ -1,0 +1,58 @@
+Actor
+create table Actor(Act_id int(20),Act_name varchar(20),Act_gender varchar(10),primary key(Act_id));
+
+
+Director
+create table Director(Dir_id int(20),Dir_name varchar(20),Dir_Phone int(20),primary key(Dir_id));
+
+Movies
+create table Movies(Mov_id int(20),Mov_Title varchar(20),Mov_year int(10),Mov_Lang varchar(20),Dir_id int(20),primary key(Mov_id),foreign key(Dir_id) references Director(Dir_id)ON delete cascade ON update cascade);
+
+
+Movie_cast
+create table Movie_cast(Act_id int(20),Mov_id int(20),Role varchar(20),primary key(Act_id,Mov_id),foreign key(Act_id) references Actor(Act_id)ON delete cascade ON update cascade,foreign key(Mov_id) references Movies(Mov_id)ON delete cascade ON update cascade);
+
+
+Rating
+create table Rating(Mov_id int(20),Rev_Stars int(10),primary key(Mov_id),foreign key(Mov_id) references Movies(Mov_id)ON delete cascade ON update cascade);
+
+Tables:
+Actors:
+insert into Actor values(1,"Akash","M");
+insert into Actor values(2,"Akshara","F");
+insert into Actor values(3,"Katrina","F");
+insert into Actor values(4,"Pankaj T","M");
+insert into Actor values(5,"Varshith","M");
+
+Directors:
+insert into Director values(1000,"Stevan Spielberg",987654321);
+insert into Director values(2000,"Hitchcock",876543219);
+insert into Director values(3000,"Harsh",765432198);
+insert into Director values(4000,"Farha",654321987);
+insert into Director values(5000,"Hemanth",543219876);
+
+Movies:
+insert into Movies values(10,"Dabangg",1999,"Hindi",1000);
+insert into Movies values(20,"Peace",1998,"English",2000);
+insert into Movies values(30,"Hulk",2016,"English",3000);
+insert into Movies values(40,"Avengers",2018,"English",4000);
+insert into Movies values(50,"Aqua",2008,"Hindi",5000);
+
+Movie cast:
+insert into Movie_cast values(1,10,"Hero");
+insert into Movie_cast values(2,20,"Heroine");
+insert into Movie_cast values(3,30,"Side actor");
+insert into Movie_cast values(4,40,"Hero");
+insert into Movie_cast values(5,50,"Hero");
+
+alter table Rating add No_of_rating int(10);
+
+Rating:
+insert into Rating values(10,2,100);
+insert into Rating values(20,4,150);
+insert into Rating values(30,4,160);
+insert into Rating values(40,3,170);
+insert into Rating values(50,1,50);
+
+
+
